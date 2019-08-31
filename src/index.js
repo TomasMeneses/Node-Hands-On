@@ -1,16 +1,23 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
+//https://www.npmjs.com/package/express
+
+const cors = require('cors');
+//https://www.npmjs.com/package/cors
+
 const bodyParser = require('body-parser');
+//https://www.npmjs.com/package/body-parser
+
 const Pessoa = require('../models/Pessoa');
 const db = require('../models/db');
 const Op = db.Sequelize.Op; // Operador do Sequelize
-
+//https://www.npmjs.com/package/sequelize
+//https://sequelize.org/master/manual/querying.html#operators
 
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json()); // Transforma o corpo da requisição em JSON
 
 
 
