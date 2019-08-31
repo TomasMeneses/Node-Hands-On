@@ -29,6 +29,7 @@ app.get('/api/pessoas', (req, res, next) => {
     res.send(dados);
   }, next);
 });
+//SELECT * FROM PESSOAS;
 
 // Cadastro de uma pessoa
 app.post('/api/pessoa', (req, res, next) => {
@@ -119,6 +120,6 @@ app.put('/api/pessoaUpdate/:id', (req, res, next) => {
     }
   }, next);
 });
-
+//select * from pessoas where nome like '%%'
 
 module.exports = app;
