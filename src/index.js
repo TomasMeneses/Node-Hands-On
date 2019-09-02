@@ -1,17 +1,11 @@
-const express = require('express');
+const express = require('express'); //https://www.npmjs.com/package/express
 const app = express();
-//https://www.npmjs.com/package/express
-
-const cors = require('cors');
-//https://www.npmjs.com/package/cors
-
-const bodyParser = require('body-parser');
-//https://www.npmjs.com/package/body-parser
+const cors = require('cors'); //https://www.npmjs.com/package/cors
+const bodyParser = require('body-parser'); //https://www.npmjs.com/package/body-parser
 
 const Pessoa = require('../models/Pessoa');
 const db = require('../models/db');
-const Op = db.Sequelize.Op; // Operador do Sequelize
-//https://www.npmjs.com/package/sequelize
+const Op = db.Sequelize.Op; //https://www.npmjs.com/package/sequelize
 //https://sequelize.org/master/manual/querying.html#operators
 
 
@@ -24,14 +18,14 @@ app.use(bodyParser.json()); // Transforma o corpo da requisição em JSON
 // ROTAS REST
 
 // Get de todas as pessoas
-app.get('/api/pessoas', (req, res, next) => {
+app.get('/api/pessoas', (req, res) => {
   Pessoa.findAll({}).then((dados) => {
     res.send(dados);
-  }, next);
+  });
 });
 
 // Cadastro de uma pessoa
-app.post('/api/pessoa', (req, res, next) => {
+app.post('/api/pessoa', (req, res) => {
   Pessoa.create({
     nome: req.body.nome,
     cpf: req.body.cpf,
@@ -43,11 +37,11 @@ app.post('/api/pessoa', (req, res, next) => {
     res.send('Pessoa Criada');
   }).catch((erro) => {
     res.send('Erro no cadastro');
-  }, next);
+  });
 });
 
 // Get de uma pessoa específica pelo ID
-app.get('/api/pessoa/:id', (req, res, next) => {
+app.get('/api/pessoa/:id', (req, res) => {
 
   const { id } = req.params;
   Pessoa.findAll({
@@ -60,11 +54,11 @@ app.get('/api/pessoa/:id', (req, res, next) => {
     } else {
       res.send(dados);
     }
-  }, next);
+  });
 });
 
 // Busca filtrada pelo CPF
-app.get('/api/pessoacpf/:cpf', (req, res, next) => {
+app.get('/api/pessoacpf/:cpf', (req, res) => {
 
 
   const { cpf } = req.params;
@@ -80,11 +74,11 @@ app.get('/api/pessoacpf/:cpf', (req, res, next) => {
     } else {
       res.send(dados);
     }
-  }, next);
+  });
 });
 
 // Delete de uma pessoa pelo id
-app.delete('/api/pessoa/:id', (req, res, next) => {
+app.delete('/api/pessoa/:id', (req, res) => {
 
   const { id } = req.params;
   Pessoa.destroy({
@@ -97,11 +91,11 @@ app.delete('/api/pessoa/:id', (req, res, next) => {
     } else {
       res.send('Dados Deletados');
     }
-  }, next);
+  });
 });
 
 //UPDATE DE ROW PELO ID
-app.put('/api/pessoaUpdate/:id', (req, res, next) => {
+app.put('/api/pessoaUpdate/:id', (req, res) => {
 
   const { id } = req.params;
   const { nome } = req.body;
@@ -111,13 +105,12 @@ app.put('/api/pessoaUpdate/:id', (req, res, next) => {
     { where: { id: id } }
 
   ).then((dados) => {
-    console.log(dados)
     if (!dados) {
       return res.send('Nada foi encontrado');
     } else {
       return res.send('Update realizado');
     }
-  }, next);
+  });
 });
 
 
