@@ -2,29 +2,19 @@ const db = require('./db');
 
 const Pessoa = db.sequelize.define('pessoas', {
     nome: {
-        type: db.Sequelize.STRING, allowNull: false, notEmpty: {
-            msg: 'Este campo nao pode ser vazio'
-        }
+        type: db.Sequelize.STRING, allowNull: false
     },
     cpf: {
-        type: db.Sequelize.STRING, unique: 'compositeIndex', allowNull: false, notEmpty: {
-            msg: 'Este campo nao pode ser vazio'
-        }
+        type: db.Sequelize.STRING, unique: 'compositeIndex', allowNull: false
     },
     idade: {
-        type: db.Sequelize.INTEGER, allowNull: false, notEmpty: {
-            msg: 'Este campo nao pode ser vazio'
-        }
+        type: db.Sequelize.INTEGER, allowNull: false
     },
     peso: {
-        type: db.Sequelize.DOUBLE, allowNull: false, notEmpty: {
-            msg: 'Este campo nao pode ser vazio'
-        }
+        type: db.Sequelize.DOUBLE, allowNull: false
     },
     altura: {
-        type: db.Sequelize.DOUBLE, allowNull: false, notEmpty: {
-            msg: 'Este campo nao pode ser vazio'
-        }
+        type: db.Sequelize.DOUBLE, allowNull: false
     }
 });
 
